@@ -1,3 +1,4 @@
+import postcss from "postcss"
 import Stories from "./Stories"
 function Feed() {
     return (
@@ -8,6 +9,7 @@ function Feed() {
                 <Stories />
 
                 {/*Posts*/}
+                
             </section>
                
             <section>
