@@ -1,12 +1,14 @@
 import Head from "next/head"
-import {signIn, useSession} from "next-auth/react"
+import {signIn, signOut, useSession} from "next-auth/react"
 import Header from "../components/Header"
 import Feed from "../components/Feed"
 import MiniProfile from "../components/MiniProfile"
 
+
 export default function Home() {
 
   const {session, loadingSession} = useSession();
+  
 
   if (loadingSession){
     return <p>Loading...</p>
@@ -27,20 +29,6 @@ export default function Home() {
        {/*Modal*/}
        <MiniProfile />
 
-       {!session && (
-         <>
-         <button onClick={ ()=> signIn()}> 
-         Sign In new buttom
-         </button>
-         </>
-       )} 
-
-       {session && (
-          <>
-          <h4> You are logged in as: {session.user.name}</h4>
-          <h4>Email: {session.user.email}</h4>
-          </>
-       )}
     </div>
   )
 }
