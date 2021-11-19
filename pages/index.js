@@ -29,6 +29,7 @@ export default function Home() {
        {/*Modal*/}
        <MiniProfile />
 
+
     </div>
   )
 }
