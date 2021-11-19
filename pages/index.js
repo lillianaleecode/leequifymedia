@@ -3,6 +3,7 @@ import {signIn, signOut, useSession} from "next-auth/react"
 import Header from "../components/Header"
 import Feed from "../components/Feed"
 import MiniProfile from "../components/MiniProfile"
+import Modal from "../components/Modal"
 
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
        <Feed />
 
        {/*Modal*/}
+       <Modal />
        <MiniProfile />
 
 

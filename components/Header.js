@@ -10,11 +10,13 @@ import {
 } from "@heroicons/react/outline";
 import Home from "../pages";
 import { signIn, signOut, useSession } from "next-auth/react";
-import {GoogleAuthProvider, signInWithPopup} from "firebase/auth"
+import { useRecoilState } from "recoil";
+import { modalState } from "../atoms/modalAtoms";
 
 function Header() {
 
     const {data: session } = useSession();
+    const [open, setOpen] = useRecoilState(modalState);
     console.log(session);
 
     return (
@@ -66,7 +68,7 @@ function Header() {
                     <PaperAirplaneIcon className="navBtn rotate-45"/>
                     <div className="absolute -top-2 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white">3</div>
                     </div>
-                    <PlusCircleIcon className="navBtn" />
+                    <PlusCircleIcon onClick={() => setOpen(true)} className="navBtn" />
                     <UserGroupIcon className="navBtn"/>
                     <HeartIcon className="navBtn" />
 
