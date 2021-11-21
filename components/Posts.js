@@ -1,6 +1,9 @@
+import { collection, onSnapshot, orderBy, query } from "@firebase/firestore";
 import Post from "./Post"
+import { useState, useEffect } from "react";
+import { db } from "../firebase";
 
-const posts = [
+/*const posts = [
     {
         id:'123',
         username: 'leequify',
@@ -17,16 +20,36 @@ const posts = [
         caption: 'Hello there!',
 
     }
-]
+] */
 
+//bring from firebase to the front end
 function Posts() {
+    const [posts, setPosts] = useState([]);
+
+    useEffect(
+        () => 
+            onSnapshot(
+                query(collection(db, 'posts'),orderBy('timestamp', 'desc')), 
+            (snapshot) => {
+            setPosts(snapshot.docs);
+        }
+        ),
+         [db] );
+
+         console.log(posts)
+
+
+
     return (
         <div>
             {posts.map(post => (
-                <Post key={post.id} id={post.id}
-                username={post.username}
-                userImg={post.img}
-                caption={post.caption}
+                <Post 
+                key={post.id} 
+                id={post.id}
+                username={post.data().username}
+                userImg={post.data().image}
+                img={post.data().image}
+                caption={post.data().caption}
 
                 />
 
